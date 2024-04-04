@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #image{
+        float:left;
+        margin-top: 100px;
+        margin-left: 130px;
+    }
+    #content{
+        float: right;
+        height: 280px;
+        width: 420px;
+        margin-top: 100px;
+        margin-right: 130px;
+
+    }
+    h1{
+        font-size: 42px;
+    }
+    #sign-up {
+    background-color: black; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: none;
+    cursor: pointer; 
+    }
+
+
+</style>
+<body>
+    <div id="image">
+        <img src = "start.jpg" height="350px" width="520px">
+    </div>
+    <div id="content">
+        <h1>Link.Loom</h1>
+        <p>discover a vibrant community dedicated to sharing valuable resources across diverse interests and fields. Join us to access a wealt of articles, tutorials, documents, and tools and unlock the power of collaborative sharing for your personal and professional growth.LinkLoom symbolizes the intricate web of connections we're weaving among users, where every link represents a thread in the fabric of collaboration and knowledge-sharing. Just like a loom meticulously intertwines threads to create a beautiful tapestry, LinkLoom brings together individuals, ideas, and resources to create something greater than the sum of its parts</p>
+
+        <input type="button" id="sign-up" value="GET STARTED" onclick="goToPage()">
+    </div>
+    <script>
+        function goToPage() {
+            window.location.href = 'sign_up.html';
+        }
+    </script>
+    
+</body>
+</html>

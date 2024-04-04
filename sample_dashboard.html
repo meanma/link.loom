@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+<style>
+  /* Global Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Navigation Bar Styles */
+  .navbar {
+    background-color: #000000;
+    padding: 10px 0;
+  }
+
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .navbar-menu {
+    list-style-type: none;
+  }
+
+  .navbar-menu li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .navbar-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  /* User Information Styles */
+  .user-info {
+    margin-top: 20px;
+  }
+
+  /* Cards Styles */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+    position: relative; /* Added position */
+  }
+
+  .card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .card h3 {
+    margin-bottom: 10px;
+  }
+
+  #card1 {
+    background-color: teal;
+  }
+
+  #card2 {
+    background-color: rgb(198, 33, 28);
+  }
+
+  #card3 {
+    background-color: rgb(38, 46, 199);
+  }
+
+  #card4 {
+    background-color: rgb(233, 215, 21);
+  }
+
+  .toggle-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .toggle-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .user-info {
+    margin-bottom: 30px;
+  }
+
+  /* Added styles */
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body ng-app="myModule" ng-controller="myController">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <span class="navbar-brand">Link.Loom</span>
+      <ul class="navbar-menu">
+        <li><a href="editDashboard.html">Edit Dashboard</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="settings.html">Edit Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- User Information -->
+    <div class="user-info">
+      <h2>Welcome, John Doe!</h2>
+      <p>Username: johndoe</p>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="cards">
+      <div class="card" id="card1" ng-init="List1 = []">
+        <h3>Travel</h3>
+        <input type="text" ng-model="newTask1" placeholder="Type here..." ng-keydown="handleKeyPress($event, List1)">
+        <button ng-click="addTask(List1)">Add</button>
+        <table>
+
+          <tbody>
+            <tr ng-repeat="l in List1">
+              <td>{{l.name}}</td>
+              <td>
+                <button ng-click="deleteTask(l, List1)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" id="card2" ng-init="List2 = []">
+        <h3>Education</h3>
+        <input type="text" ng-model="newTask2" placeholder="Type here..." ng-keydown="handleKeyPress($event, List2)">
+        <button ng-click="addTask(List2)">Add</button>
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+            <tr ng-repeat="l in List2">
+              <td>{{l.name}}</td>
+              <td>
+                <button ng-click="deleteTask(l, List2)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" id="card3" ng-init="List3 = []">
+        <h3>Daily Life</h3>
+        <input type="text" ng-model="newTask3" placeholder="Type here..." ng-keydown="handleKeyPress($event, List3)">
+        <button ng-click="addTask(List3)">Add</button>
+        <table>
+          <thead>
+            
+          </thead>
+          <tbody>
+            <tr ng-repeat="l in List3">
+              <td>{{l.name}}</td>
+              <td>
+                <button ng-click="deleteTask(l, List3)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" id="card4" ng-init="List4 = []">
+        <h3>Entertainment</h3>
+        <input type="text" ng-model="newTask4" placeholder="Type here..." ng-keydown="handleKeyPress($event, List4)">
+        <button ng-click="addTask(List4)">Add</button>
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+            <tr ng-repeat="l in List4">
+              <td>{{l.name}}</td>
+              <td>
+                <button ng-click="deleteTask(l, List4)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module("myModule", [])
+      .controller("myController", function($scope) {
+        $scope.List1 = [];
+        $scope.List2 = [];
+        $scope.List3 = [];
+        $scope.List4 = [];
+
+        $scope.addTask = function(list) {
+          if (list === $scope.List1 && $scope.newTask1.trim() !== '') {
+            list.push({ name: $scope.newTask1 });
+            $scope.newTask1 = '';
+          } else if (list === $scope.List2 && $scope.newTask2.trim() !== '') {
+            list.push({ name: $scope.newTask2 });
+            $scope.newTask2 = '';
+          } else if (list === $scope.List3 && $scope.newTask3.trim() !== '') {
+            list.push({ name: $scope.newTask3 });
+            $scope.newTask3 = '';
+          } else if (list === $scope.List4 && $scope.newTask4.trim() !== '') {
+            list.push({ name: $scope.newTask4 });
+            $scope.newTask4 = '';
+          }
+        };
+
+        $scope.deleteTask = function(task, list) {
+          var index = list.indexOf(task);
+          if (index !== -1) {
+            list.splice(index, 1);
+          }
+        };
+
+        $scope.handleKeyPress = function(event, list) {
+          if (event.keyCode === 13) { // Key code for "Enter" key
+            $scope.addTask(list);
+          }
+        };
+      });
+  </script>
+</body>
+</html>

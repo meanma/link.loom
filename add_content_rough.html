@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Text</title>
+</head>
+<body>
+  <div id="container">
+    <!-- Container where text will be added -->
+  </div>
+  <button id="addTextButton">Add Text</button>
+</body>
+<script>
+    // Get the container and button elements
+const container = document.getElementById('container');
+const addButton = document.getElementById('addTextButton');
+
+// Add event listener to the button
+addButton.addEventListener('click', function() {
+  // Prompt the user to enter text
+  const newText = prompt('Enter text to add:');
+
+  // Check if the user entered text and if the cancel button wasn't clicked
+  if (newText !== null && newText !== '') {
+    // Create a new paragraph element
+    const paragraph = document.createElement('p');
+
+    // Set the text content of the paragraph
+    paragraph.textContent = newText;
+
+    // Append the paragraph to the container
+    container.appendChild(paragraph);
+  }
+});
+
+</script>
+</html>

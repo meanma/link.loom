@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reactive Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS for styling */
+    body {
+      background-color: rgb(255, 255, 255);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    h2{
+      margin-top: 20px;
+      margin-left: 65px;
+    }
+
+    .form-container {
+      background-color: rgba(3, 0, 0, 0.9);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 40px;
+      color: rgb(247, 247, 247);
+    }
+
+    .password-toggle {
+      position: relative;
+    }
+
+    .password-toggle input[type="password"] {
+      padding-right: 30px;
+    }
+
+    .password-toggle .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .slides {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Link.Loom</h2>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+        <div class="slideshow-container">
+            <img src="img3.jpg" class="img-fluid slides" alt="Side Image">
+            <img src="img2.jpg" class="img-fluid slides">
+            <img src="img4.jpg" class="img-fluid slides">
+            <img src="img5.jpg" class="img-fluid slides">
+        </div>
+        <video width="545px" height="350px" controls><source src ="link_loom1.mp4" type="video/mp4"></video>
+    </div>
+    <div class="col-md-6">
+      <div class="form-container">
+        <h2 class="mb-4 text-center">Sign Up</h2>
+        <form action="/submit-form" method="POST" id="signupForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" required>
+              </div>
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+              </div>
+              <div class="form-group password-toggle">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" required>
+                <span class="toggle-password">&#128065;</span>
+              </div>
+              <div class="form-group">
+                <label for="country">Country:</label>
+                <select class="form-control" id="country" required>
+                  <option value="" selected disabled>Select Country</option>
+                  <option value="india">India</option>
+                  <!-- Add more countries here -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="state">State:</label>
+                <select class="form-control" id="state" required disabled>
+                  <option value="" selected disabled>Select State</option>
+                  <!-- State options will be dynamically populated based on the selected country -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="profession">Profession:</label>
+                <input type="text" class="form-control" id="profession" required>
+              </div>
+              <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" required>
+              </div>
+              <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" required>
+                  <option value="" selected disabled>Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea class="form-control" id="bio" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" href="possible_dashboard.html">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and jQuery (for password toggle) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  let slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    let slides = document.getElementsByClassName("slides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex - 1].style.display = "block";  
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+  }
+
+  // Function to toggle password visibility
+  $('.toggle-password').click(function(){
+    $(this).toggleClass('toggle-active');
+    var input = $(this).parent().find('input');
+    if (input.attr('type') === 'password') {
+      input.attr('type', 'text');
+    } else {
+      input.attr('type', 'password');
+    }
+  });
+  
+  // Populate states based on selected country
+  $('#country').change(function(){
+    var country = $(this).val();
+    if(country === "india") {
+      $('#state').prop('disabled', false).html('<option value="" selected disabled>Select State</option><option value="andhra_pradesh">Andhra Pradesh</option><option value="bihar">Bihar</option><option value="gujarat">Gujarat</option><option value="karnataka">Karnataka</option><option value="maharashtra">Maharashtra</option><option value="rajasthan">Rajasthan</option><option value="uttar_pradesh">Uttar Pradesh</option><option value="tamil_nadu">Tamil Nadu</option><option value="kerala">Kerala</option><option value="madhya_pradesh">Madhya Pradesh</option><option value="punjab">Punjab</option><option value="haryana">Haryana</option><option value="west_bengal">West Bengal</option>');
+    } else {
+      $('#state').prop('disabled', true).html('<option value="" selected disabled>Select State</option>');
+    }
+  });
+
+  // Function to check form validity and enable/disable sign-up button
+  function checkFormValidity() {
+    var form = document.getElementById('signupForm');
+    var signupBtn = document.getElementById('signupBtn');
+    if (form.checkValidity()) {
+      signupBtn.disabled = false;
+    } else {
+      signupBtn.disabled = true;
+    }
+  }
+</script>
+</body>
+</html>
